@@ -1,8 +1,10 @@
 # inference-kernel-cookbook
 
-**The LLM inference techniques that power vLLM, TensorRT-LLM, and SGLang — implemented from scratch in self-contained CUDA files.**
+**81x speedup. 1000x memory reduction. 3 self-contained CUDA files. No frameworks.**
 
-Every recipe is one `.cu` file. Each implements a core inference optimization technique, benchmarks it, and verifies correctness. No frameworks, no dependencies beyond CUDA. Read the code top-to-bottom.
+The LLM inference techniques that power vLLM, TensorRT-LLM, and SGLang — implemented from scratch so you can read every line. ~990 lines of CUDA total.
+
+![Performance](assets/performance.png)
 
 ## Why this exists
 
@@ -19,14 +21,6 @@ Measured on **NVIDIA RTX PRO 6000 Blackwell** (sm_120) with CUDA 12.8.
 | 01 | **Flash Attention** | Tiled attention with online softmax — no N×N matrix | 81x speedup vs naive, 16 MB → 16 KB memory |
 | 02 | **KV Cache** | Cache K,V across decode steps — avoid O(N²) recomputation | 0.05 ms/token with cache vs recomputing everything |
 | 03 | **Paged Attention** | Virtual-memory-style KV cache — eliminate fragmentation | Exact same result with scattered physical memory |
-
-### Coming soon
-
-| # | Recipe | Status |
-|---|--------|--------|
-| 04 | **INT4/FP8 Quantized GEMM** | Planned |
-| 05 | **Speculative Decoding** | Planned |
-| 06 | **Continuous Batching** | Planned |
 
 ## Quick Start
 
@@ -87,8 +81,6 @@ The core idea behind vLLM (Kwon et al., 2023). Instead of allocating a contiguou
   01 Flash Attention ─── how to compute attention efficiently
   02 KV Cache ────────── how to avoid recomputation across steps
   03 Paged Attention ─── how to manage KV cache memory at scale
-  04 Quantization ────── how to shrink the GEMM/KV precision [planned]
-  05 Spec Decode ─────── how to generate multiple tokens per step [planned]
 ```
 
 ## Requirements
