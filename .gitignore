@@ -1,0 +1,7 @@
+*.o
+*.out
+build/
+.vscode/
+*.nsight
+*.ncu-rep
+*.qdrep
