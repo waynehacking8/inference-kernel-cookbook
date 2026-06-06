@@ -97,6 +97,12 @@ The core idea behind vLLM (Kwon et al., 2023). Instead of allocating a contiguou
 - NVIDIA GPU with compute capability 7.0+ (Volta or later)
 - ~1 GB GPU memory for the default problem sizes
 
+## Related projects
+
+- **[tensor-core-from-scratch](https://github.com/waynehacking8/tensor-core-from-scratch)** — The matmul kernel that underlies everything here. Start there if you want to understand the GPU fundamentals first.
+- **[trtllm-triton-serving](https://github.com/waynehacking8/trtllm-triton-serving)** — These techniques in production: TensorRT-LLM vs vLLM head-to-head on H100.
+- **[nccl-collectives-bench](https://github.com/waynehacking8/nccl-collectives-bench)** — The multi-GPU communication layer: NCCL benchmarks on 8×H100 NVSwitch.
+
 ## Acknowledgments
 
 Inspired by [Andrej Karpathy](https://github.com/karpathy)'s "from scratch" philosophy. References: [FlashAttention](https://arxiv.org/abs/2205.05198) (Dao et al., 2022), [PagedAttention/vLLM](https://arxiv.org/abs/2309.06180) (Kwon et al., 2023).
